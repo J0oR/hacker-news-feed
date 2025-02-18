@@ -7,7 +7,6 @@
 Third project of the master in Front End Development of the start2impact university.
 </p>
 
-<hr style="height: 1px; background-color:rgb(168, 168, 168); border: none;">
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -50,7 +49,6 @@ This web app allows you to explore the latest tech news using an external API.
 
 
 <p align="right" style="margin-top:50px"><a href="#readme-top">⬆️ back to top</a></p>
-<hr style="height: 1px; background-color:rgb(168, 168, 168); border: none;">
 
 
 
@@ -69,7 +67,6 @@ Here's a list of the key technologies and libraries I used to build this app:
 
 
 <p align="right" style="margin-top:50px"><a href="#readme-top">⬆️ back to top</a></p>
-<hr style="height: 1px; background-color:rgb(168, 168, 168); border: none;">
 
 
 <!-- Try it --->
@@ -81,7 +78,6 @@ Click the link below to try the Firebase-hosted version, or scroll down to the n
 
 
 <p align="right" style="margin-top:50px"><a href="#readme-top">⬆️ back to top</a></p>
-<hr style="height: 1px; background-color:rgb(168, 168, 168); border: none;">
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -120,7 +116,6 @@ Follow the steps below to get your local copy of this app up and running. These 
 
 
 <p align="right" style="margin-top:50px"><a href="#readme-top">⬆️ back to top</a></p>
-<hr style="height: 1px; background-color:rgb(168, 168, 168); border: none;">
 
 
 
@@ -136,7 +131,6 @@ Follow the steps below to get your local copy of this app up and running. These 
 [![CodePen](https://img.shields.io/badge/CodePen-lightgray?style=for-the-badge&logo=codepen&logoColor=black)](https://codepen.io/jrvn/)
 
 <p align="right" style="margin-top:50px"><a href="#readme-top">⬆️ back to top</a></p>
-<hr style="height: 1px; background-color:rgb(168, 168, 168); border: none;">
 
 
 <!-- ACKNOWLEDGMENTS -->
@@ -149,4 +143,3 @@ Use this space to list resources you find helpful and would like to give credit 
 * [md-badges](https://github.com/inttter/md-badges)
 
 <p align="right" style="margin-top:50px"><a href="#readme-top">⬆️ back to top</a></p>
-<hr style="height: 1px; background-color:rgb(168, 168, 168); border: none;">
