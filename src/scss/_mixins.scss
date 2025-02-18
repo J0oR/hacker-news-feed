@@ -1,0 +1,73 @@
+@use "variables" as var;
+
+@mixin flex-container(
+  $direction: column,
+  $justify: center,
+  $align: center,
+  $wrap: nowrap,
+  $gap: 0
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+  gap: $gap;
+}
+
+@mixin fluid-property($min-size, $preferred-size, $max-size, $property) {
+  $property: clamp($min-size, $preferred-size + 4vw, $max-size);
+}
+
+@mixin font-family($font, $weight: 400, $size: 1rem) {
+  font-family: $font;
+  font-optical-sizing: auto;
+  font-weight: $weight;
+  font-style: normal;
+  font-size: $size;
+
+  // Additional properties for Inconsolata font
+  @if $font == "Inconsolata" {
+    font-variation-settings: "wdth" 100;
+  }
+}
+
+@mixin gradient-background($start-color, $end-color, $direction) {
+  /* fallback for old browsers */
+  background: $end-color;
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient($direction, $start-color, $end-color);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient($direction, $start-color, $end-color);
+}
+
+@mixin button-styles($color, $hover-color, $padding, $font-color) {
+  background-color: $color;
+  color: $font-color;
+  padding: $padding;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius: 25px;
+
+  &:hover {
+    background-color: transparent;
+    transform: scale(1.1);
+    color: $hover-color;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &:disabled:hover {
+    color: var.$active-color;
+    transform: scale(1);
+  }
+
+  &.active {
+    border: none;
+    background-color: var.$active-background-color;
+    color: var.$active-color;
+  }
+}

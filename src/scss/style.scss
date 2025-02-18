@@ -1,0 +1,269 @@
+@use "mixins" as mix;
+@use "variables" as var;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  //border: 1px solid red;
+}
+
+html,
+body {
+  overscroll-behavior: none;
+}
+
+body {
+  width: 100%;
+  font-size: 16px;
+  @include mix.gradient-background(
+    var.$background-gradient-start,
+    var.$background-gradient-end,
+    to right
+  );
+
+  /* Hide the scrollbar for webkit browsers */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.global-container {
+  width: 100%;
+  margin-bottom: 75px;
+  @include mix.flex-container($gap: 50px);
+}
+
+%responsive-container {
+  max-width: 700px;
+
+  @media (max-width: 600px) {
+    width: 90%;
+  }
+
+  /* Medium devices (tablets, 600px - 900px) */
+  @media (min-width: 601px) and (max-width: 900px) {
+    width: 80%;
+  }
+
+  /* Large devices (desktops, 900px - 1200px) */
+  @media (min-width: 901px) and (max-width: 1200px) {
+    width: 60%;
+  }
+
+  /* Extra large devices (large desktops, 1200px and above) */
+  @media (min-width: 1201px) {
+    width: 50%;
+  }
+}
+
+/* ################### NAV BAR ################# */
+
+.nav-bar {
+  @include mix.flex-container($justify: space-between);
+  @extend %responsive-container;
+
+  .logo-container {
+    margin-left: -6%;
+    width: 100%;
+    @include mix.flex-container($direction: row);
+
+    h1 {
+      color: var.$nav-link-color;
+      font-weight: 500;
+      @include mix.font-family($font: "Inconsolata", $weight: 700, $size: 2rem);
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .nav-bar-links {
+    background-color: var.$nav-background-color;
+    padding: 5px;
+    border-radius: 25px;
+    @include mix.flex-container(
+      $justify: space-between,
+      $direction: row,
+      $gap: 15px
+    );
+
+    /* Landscape tablet (768px and up) */
+    @media only screen and (max-width: 600px) {
+      @include mix.flex-container($direction: column, $gap: 10px);
+      width: 60%;
+    }
+
+    button {
+      @include mix.button-styles(
+        $color: transparent,
+        $hover-color: var.$nav-link-hover-color,
+        $padding: 10px 15px,
+        $font-color: var.$nav-link-color
+      );
+      @include mix.font-family(
+        $font: "Inconsolata",
+        $size: clamp(0.9rem, 2vw + 1rem, 1.1rem),
+        $weight: 500
+      );
+
+      @media (max-width: 600px) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+/* ################### ARTICLES CONTAINER ################# */
+
+.articles-container {
+  margin: 0 auto;
+  @include mix.flex-container($direction: row, $wrap: wrap, $gap: 20px);
+  @extend %responsive-container;
+  background-color: var.$article-container-background;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  padding: 20px;
+  border-radius: 25px;
+}
+
+/* ################### CARD ################# */
+
+.card {
+  border-radius: 15px;
+  border: none;
+  //box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 125px;
+  @include mix.flex-container(
+    $direction: column,
+    $align: flex-start,
+    $gap: 5px
+  );
+  text-decoration: none;
+  padding: 0 30px;
+  @include mix.gradient-background(
+    var.$card-gradient-start,
+    var.$card-gradient-end,
+    to right
+  );
+
+  opacity: 0; /* Initially transparent */
+  animation: swipeIn 0.5s forwards; /* Animation name, duration, and forwards to keep final state */
+
+  // Define shared properties for transition and transform-origin
+  %card-item-transition {
+    transform-origin: center;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .card-title {
+    margin: 0 0 8px;
+    font-size: 18px;
+    color: var.$card-font-color1;
+    @include mix.font-family(
+      $font: "Karla",
+      $weight: 300,
+      $size: clamp(1.1rem, 2vw + 1.2rem, 1.3rem)
+    );
+    @extend %card-item-transition; // Apply shared properties to card-item-transition;
+  }
+
+  .card-details {
+    @include mix.font-family(
+      $font: "inconsolata",
+      $size: clamp(1rem, 2vw + 1.05rem, 1.1rem)
+    );
+    color: var.$card-font-color2;
+    @include mix.flex-container(
+      $direction: row,
+      $gap: 10px,
+      $justify: flex-start
+    );
+    @extend %card-item-transition;
+  }
+
+  &:hover {
+    box-shadow: 0px 0px 10px 1px var.$active-background-color;
+    //outline: 1px solid var.$card-hover-color !important;
+  }
+}
+
+/* Define the keyframes for the swipe-in animation */
+@keyframes swipeIn {
+  from {
+    opacity: 0; /* Fully transparent */
+    transform: translateX(+50px) scale(1.1); /* Move to the left */
+  }
+  to {
+    opacity: 1; /* Fully visible */
+    transform: translateX(0) scale(1); /* Move to the original position */
+  }
+}
+
+/* Mobile devices (up to 600px wide) */
+@media only screen and (max-width: 600px) {
+  /* Define the keyframes for the swipe-in animation */
+  @keyframes swipeIn {
+    from {
+      opacity: 0; /* Fully transparent */
+      transform: translateX(+30px) scale(1.05); /* Move to the left */
+    }
+    to {
+      opacity: 1; /* Fully visible */
+      transform: translateX(0) scale(1); /* Move to the original position */
+    }
+  }
+}
+
+/* ######################## load more button ######################### */
+
+.load-more-button {
+  width: 250px;
+  height: 50px;
+  margin: 0 auto;
+
+  @include mix.font-family(
+    $font: "inconsolata",
+    $weight: 400,
+    $size: clamp(1rem, 2vw + 1.1rem, 1.2rem)
+  );
+
+  @include mix.button-styles(
+    var.$load-button-color,
+    var.$card-font-color1,
+    10px 20px,
+    var.$card-font-color1
+  );
+
+  &:hover {
+    box-shadow: 0 1px 9px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    background-color: var.$load-button-color;
+  }
+}
+
+.loader {
+  display: none;
+  width: 50px;
+  height: 50px;
+  border: 5px solid var.$active-background-color;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
